@@ -25,7 +25,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text } from 'react-native';
 
 // Imports: Screens
-import Counter from './src/screens/Counter';
+import Counter from './src/components/Counter';
 // import HomeScreen from './src/screens/HomeScreen';
 // import OtherScreen from './src/screens/OtherScreen';
 
