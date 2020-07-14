@@ -25,17 +25,35 @@ const HomeScreen = ({ navigation }) => {
     return (<View><Text></Text></View>);
   };
 
-export default MainNavigation = () => {
-    return(
-        <NavigationContainer>
-            <Stack.Navigator>
-            <Stack.Screen
-                name="HomeScreen"
-                component={HomeScreen}
-                options={{ title: 'Welcome' }}
-            />
-            <Stack.Screen name="OtherScreen" component={OtherScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+export default class MainNavigation extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    //SQLITE FUNCTIONS
+    errorCB(err) {
+        console.log(`SQL Error: ${err}`);
+    }
+
+    successCB() {
+        console.log('SQL executed fine');
+    }
+
+    openCB() {
+        console.log('Database OPENED');
+    }
+
+    render() {
+        return(
+            <NavigationContainer>
+                <Stack.Navigator>
+                <Stack.Screen
+                    name="HomeScreen"
+                    component={HomeScreen}
+                    options={{ title: 'Welcome' }}
+                />
+                <Stack.Screen name="OtherScreen" component={OtherScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        );
+    }
 }

@@ -12,10 +12,10 @@ export const decreaseCounter = () => ({
 
 // This axios api is working properly
 export const getGithubUserRepositories = () => {
-  Api({
-    method: 'get',
-    url: 'https://api.github.com/users/rahulworld/repos',
-  }).then((resp) => {
-    console.log(resp);
-  })
+  // Api({
+  //   method: 'get',
+  //   url: 'https://api.github.com/users/rahulworld/repos',
+  // }).then((resp) => {
+  //   console.log(resp);
+  // })
 };

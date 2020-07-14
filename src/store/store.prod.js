@@ -8,6 +8,10 @@ import { persistStore, persistReducer } from 'redux-persist';
 // Imports: Redux
 import rootReducer from '../reducers/index';
 
+//SQLITE DATABASE
+import { database } from '../constants/AppConstants';
+import { seedDb, runMigration, getProgressiveTest } from '../dbClient';
+
 // Middleware: Redux Persist Config
 const persistConfig = {
   // Root?
@@ -37,7 +41,14 @@ const store = createStore(
 );
 
 // Middleware: Redux Persist Persister
-let persistor = persistStore(store);
+// Middleware: Redux Persist Persister
+let persistor = persistStore(store, null, () => {
+    const db = SQLite.openDatabase({ name: database.name }, this.openCB, this.errorCB);
+    global.db = db;
+    seedDb();
+    runMigration().then(() => {
+    });
+});
 
 // Exports
 export {

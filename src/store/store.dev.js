@@ -8,9 +8,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
+import SQLite from 'react-native-sqlite-storage';
 
 // Imports: Redux
 import rootReducer from '../reducers/index';
+
+//SQLITE DATABASE
+import { database } from '../constants/AppConstants';
+import { seedDb, runMigration, getProgressiveTest } from '../dbClient';
 
 // Middleware: Redux Persist Config
 const persistConfig = {
@@ -43,7 +48,14 @@ const store = createStore(
 );
 
 // Middleware: Redux Persist Persister
-let persistor = persistStore(store);
+let persistor = persistStore(store, null, () => {
+    const db = SQLite.openDatabase({ name: database.name }, this.openCB, this.errorCB);
+    global.db = db;
+    seedDb();
+    runMigration().then(() => {
+        console.log('MIGRATION COMPLETED');
+    });
+});
 
 // Exports
 export {
