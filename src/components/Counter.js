@@ -12,6 +12,10 @@ const { height, width } = Dimensions.get('window');
 
 // Screen: Counter
 class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -28,6 +32,14 @@ class Counter extends React.Component {
         </View>
 
         <Text style={styles.counterTitle}>Counter</Text>
+        <View>
+          <Button
+            title="Go to Jane's profile"
+            onPress={() =>
+              this.props.navigation.navigate('OtherScreen', { name: 'Jane' })
+            }
+          />
+        </View>
 
         <View style={styles.counterContainer}>
           <TouchableOpacity onPress={() => this.props.reduxIncreaseCounter()}>
