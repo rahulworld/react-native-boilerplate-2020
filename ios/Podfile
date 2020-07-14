@@ -8,6 +8,8 @@ target 'RN2020Boilerplate' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
+
   target 'RN2020BoilerplateTests' do
     inherit! :complete
     # Pods for testing
