@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 
 // Imports: Redux Actions
 import { login } from '../actions/authActions';
-import { increaseCounter, decreaseCounter } from '../actions/counterActions';
+import { increaseCounter, decreaseCounter, getGithubUserRepositories} from '../actions/counterActions';
+// import { increaseCounter, decreaseCounter } from '../actions/counterActions';
+
+// import Api from '../helpers/ApiHelper';
+
+
 
 // Screen Dimensions
 const { height, width } = Dimensions.get('window');
@@ -14,6 +19,16 @@ const { height, width } = Dimensions.get('window');
 class Counter extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.getGithubUserRepositories();
+    // Api({
+    //   method: 'get',
+    //   url: 'https://api.github.com/users/rahulworld/repos',
+    // }).then((resp) => {
+    //   console.log(resp);
+    // })
   }
 
   render() {
@@ -127,6 +142,7 @@ const mapDispatchToProps = (dispatch) => {
       reduxIncreaseCounter: () => dispatch(increaseCounter()),
       // Decrease Counter
       reduxDecreaseCounter: () => dispatch(decreaseCounter()),
+      getGithubUserRepositories: () => getGithubUserRepositories(),
       // Login
       reduxLogin: (trueFalse) => dispatch(login(trueFalse)),
    };
