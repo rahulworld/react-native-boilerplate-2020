@@ -154,6 +154,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            resValue("string", "PORT_NUMBER", "8083")
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -186,6 +187,8 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'

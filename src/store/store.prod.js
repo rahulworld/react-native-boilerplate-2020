@@ -1,46 +1,56 @@
-// Imports: Dependencies
-import AsyncStorage from '@react-native-community/async-storage';
-import { createStore, compose, applyMiddleware } from 'redux';
-import ReduxThunk from "redux-thunk";
-import { createLogger } from 'redux-logger';
-import { persistStore, persistReducer } from 'redux-persist';
+// // Imports: Dependencies
+// import AsyncStorage from '@react-native-community/async-storage';
+// import { createStore, compose, applyMiddleware } from 'redux';
+// import ReduxThunk from "redux-thunk";
+// import { persistStore, persistReducer } from 'redux-persist';
 
-// Imports: Redux
-import rootReducer from '../reducers/index';
+// import SQLite from 'react-native-sqlite-storage';
 
-// Middleware: Redux Persist Config
-const persistConfig = {
-  // Root?
-  key: 'root',
-  // Storage Method (React Native)
-  storage: AsyncStorage,
-  // Whitelist (Save Specific Reducers)
-  whitelist: [
-    'authReducer',
-  ],
-  // Blacklist (Don't Save Specific Reducers)
-  blacklist: [
-    'counterReducer',
-  ],
-};
+// // Imports: Redux
+// import rootReducer from '../reducers/index';
 
-// Middleware: Redux Persist Persisted Reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+// //SQLITE DATABASE
+// import { database } from '../constants/AppConstants';
+// import { seedDb, runMigration, getProgressiveTest } from '../dbClient';
 
-//Middleware
-const middleware = applyMiddleware(ReduxThunk);
+// // Middleware: Redux Persist Config
+// const persistConfig = {
+//   // Root?
+//   key: 'root',
+//   // Storage Method (React Native)
+//   storage: AsyncStorage,
+//   // Whitelist (Save Specific Reducers)
+//   whitelist: [
+//     'authReducer',
+//   ],
+//   // Blacklist (Don't Save Specific Reducers)
+//   blacklist: [
+//     'counterReducer',
+//   ],
+// };
 
-// Redux: Store
-const store = createStore(
-  persistedReducer,
-  compose(middleware)
-);
+// // Middleware: Redux Persist Persisted Reducer
+// const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-// Middleware: Redux Persist Persister
-let persistor = persistStore(store);
+// //Middleware
+// const middleware = applyMiddleware(ReduxThunk);
 
-// Exports
-export {
-  store,
-  persistor,
-};
+// // Redux: Store
+// const store = createStore(
+//   persistedReducer,
+//   compose(middleware)
+// );
+// // Middleware: Redux Persist Persister
+// let persistor = persistStore(store, null, () => {
+//     const db = SQLite.openDatabase({ name: database.name }, this.openCB, this.errorCB);
+//     global.db = db;
+//     seedDb();
+//     runMigration().then(() => {
+//     });
+// });
+
+// // Exports
+// export {
+//   store,
+//   persistor,
+// };
