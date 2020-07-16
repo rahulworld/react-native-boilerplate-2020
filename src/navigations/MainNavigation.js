@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // React Native Elements
 import { View, Text } from 'react-native';
-
+import SplashScreen from 'react-native-splash-screen'
 // Imports: Screens
 import Counter from '../components/Counter';
 // import HomeScreen from './src/screens/HomeScreen';
@@ -29,6 +29,11 @@ export default class MainNavigation extends React.Component {
     constructor(props){
         super(props);
     }
+
+    componentDidMount(){
+        SplashScreen.hide();
+    }
+
     //SQLITE FUNCTIONS
     errorCB(err) {
         console.log(`SQL Error: ${err}`);

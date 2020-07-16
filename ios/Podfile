@@ -10,6 +10,8 @@ target 'RN2020Boilerplate' do
 
   pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'RN2020BoilerplateTests' do
     inherit! :complete
     # Pods for testing
