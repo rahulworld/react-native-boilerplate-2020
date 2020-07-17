@@ -11,19 +11,28 @@ import { View, Text } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
 // Imports: Screens
 import Counter from '../components/Counter';
+import TabScreen from '../components/TabScreen';
+import AntDesignCarouse from '../components/AntDesignCarouse';
+import AntDesignAccordian from '../components/AntDesignAccordian';
 // import HomeScreen from './src/screens/HomeScreen';
 // import OtherScreen from './src/screens/OtherScreen';
 
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
-    return (
-      <Counter navigation={navigation} />
-    );
-  };
-  const OtherScreen = () => {
-    return (<View><Text></Text></View>);
-  };
+    return (<Counter navigation={navigation} />);
+};
+
+const OtherScreen = ({ navigation }) => {
+    return (<TabScreen navigation={navigation} />);
+};
+
+const AntDesignCarouseScreen = ({ navigation }) => {
+    return (<AntDesignCarouse navigation={navigation} />);
+};
+const AntDesignAccordianScreen = ({ navigation }) => {
+    return (<AntDesignAccordian navigation={navigation} />);
+};
 
 export default class MainNavigation extends React.Component {
     constructor(props){
@@ -57,6 +66,8 @@ export default class MainNavigation extends React.Component {
                     options={{ title: 'Welcome' }}
                 />
                 <Stack.Screen name="OtherScreen" component={OtherScreen} />
+                <Stack.Screen name="AntDesignCarouse" component={AntDesignCarouseScreen} />
+                <Stack.Screen name="AntDesignAccordian" component={AntDesignAccordianScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         );

@@ -54,6 +54,20 @@ class Counter extends React.Component {
               this.props.navigation.navigate('OtherScreen', { name: 'Jane' })
             }
           />
+          <View style={{ height: 20 }}></View>
+          <Button
+            title="Carouse"
+            onPress={() =>
+              this.props.navigation.navigate('AntDesignCarouse', { name: 'Jane' })
+            }
+          />
+          <View style={{ height: 20 }}></View>
+          <Button
+            title="Accordian"
+            onPress={() =>
+              this.props.navigation.navigate('AntDesignAccordian', { name: 'Jane' })
+            }
+          />
         </View>
 
         <View style={styles.counterContainer}>
