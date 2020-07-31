@@ -8,9 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // React Native Elements
 import { View, Text } from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 // Imports: Screens
 import Counter from '../components/Counter';
+import Weather from '../components/Weather';
 // import HomeScreen from './src/screens/HomeScreen';
 // import OtherScreen from './src/screens/OtherScreen';
 
@@ -20,10 +21,17 @@ const HomeScreen = ({ navigation }) => {
     return (
       <Counter navigation={navigation} />
     );
-  };
-  const OtherScreen = () => {
+};
+
+const WeatherScreen = ({ navigation }) => {
+    return (
+      <Weather navigation={navigation} />
+    );
+};
+
+const OtherScreen = () => {
     return (<View><Text></Text></View>);
-  };
+};
 
 export default class MainNavigation extends React.Component {
     constructor(props){
@@ -50,12 +58,20 @@ export default class MainNavigation extends React.Component {
     render() {
         return(
             <NavigationContainer>
-                <Stack.Navigator>
-                <Stack.Screen
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false
+                    }}>
+                    <Stack.Screen
+                        name="WeatherScreen"
+                        component={WeatherScreen}
+                        // options={{ title: 'Welcome' }}
+                    />
+                {/* <Stack.Screen
                     name="HomeScreen"
                     component={HomeScreen}
                     options={{ title: 'Welcome' }}
-                />
+                /> */}
                 <Stack.Screen name="OtherScreen" component={OtherScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
