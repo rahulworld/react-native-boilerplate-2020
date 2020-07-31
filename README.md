@@ -3,7 +3,7 @@
 #### React Native boilerplate and template with diffrent configuration by branches
 #### Please give rating and feedback to this repository or raise the issue
 
-![React Native Boilerplate 2020](https://github.com/rahulworld/react-native-boilerplate-2020/raw/master/public/react-native-boilerplate-2020.jpg "React Native Weather Application")
+![React Native Boilerplate 2020](https://github.com/rahulworld/react-native-boilerplate-2020/raw/master/public/react-native-boilerplate-2020.jpg "React Native Weather Application"){:width="150px"}
 
 
 ### Use Branches for different congiguration
