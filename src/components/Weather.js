@@ -296,7 +296,8 @@ class Weather extends React.Component {
             }}
           />
         </View>
-        {weatherForcastData.length > 0 && this.renderWeeklyWeather()}
+        {/* {weatherForcastData.length > 0 && this.renderWeeklyWeather()} */}
+        {weatherData && this.renderWeeklyWeather()}
         {weatherData && this.renderTodayWeather()}
       </SafeAreaView>
     );
