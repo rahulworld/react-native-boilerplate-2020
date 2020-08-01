@@ -7,10 +7,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // React Native Elements
-import { View, Text } from 'react-native';
+import { View, Text, PermissionsAndroid } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 // Imports: Screens
-import Counter from '../components/Counter';
+import Welcome from '../components/Welcome';
 import Weather from '../components/Weather';
 // import HomeScreen from './src/screens/HomeScreen';
 // import OtherScreen from './src/screens/OtherScreen';
@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
     return (
-      <Counter navigation={navigation} />
+      <Welcome navigation={navigation} />
     );
 };
 
@@ -63,15 +63,15 @@ export default class MainNavigation extends React.Component {
                         headerShown: false
                     }}>
                     <Stack.Screen
+                        name="HomeScreen"
+                        component={HomeScreen}
+                        options={{ title: 'Welcome' }}
+                    />
+                    <Stack.Screen
                         name="WeatherScreen"
                         component={WeatherScreen}
                         // options={{ title: 'Welcome' }}
                     />
-                {/* <Stack.Screen
-                    name="HomeScreen"
-                    component={HomeScreen}
-                    options={{ title: 'Welcome' }}
-                /> */}
                 <Stack.Screen name="OtherScreen" component={OtherScreen} />
                 </Stack.Navigator>
             </NavigationContainer>

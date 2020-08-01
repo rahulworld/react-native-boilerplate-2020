@@ -11,7 +11,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 //brew update && brew cask install react-native-debugger
 //install react native debugger tool use composedevtools for development and compose for production
-
+import { PermissionsAndroid } from "react-native";
 import ReduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -56,6 +56,30 @@ const store = createStore(
   composer,
 );
 
+const requestCameraPermission = async () => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      {
+        title: "App needs Internet Permission",
+        message:
+          "Internnet Permisssion for weather" +
+          "so you can take awesome weather report.",
+        buttonNeutral: "Ask Me Later",
+        buttonNegative: "Cancel",
+        buttonPositive: "OK"
+      }
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log("You can use the internet");
+    } else {
+      console.log("Internet permission denied");
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
 // Middleware: Redux Persist Persister
 let persistor = persistStore(store, null, () => {
     const db = SQLite.openDatabase({ name: database.name }, this.openCB, this.errorCB);
@@ -63,6 +87,7 @@ let persistor = persistStore(store, null, () => {
     seedDb();
     runMigration().then(() => {
         console.log('MIGRATION COMPLETED');
+        // requestCameraPermission();
     });
 });
 

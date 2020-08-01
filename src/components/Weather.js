@@ -10,6 +10,7 @@ import {
   View,
   Image,
   FlatList,
+  Keyboard
 } from 'react-native';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -32,7 +33,7 @@ import * as shape from 'd3-shape';
 import {login} from '../actions/authActions';
 import {getWeatherData, getWeatherForcast} from '../actions/counterActions';
 import SunImage from '../assets/images/sun.png';
-import {TextInput} from 'react-native-gesture-handler';
+import {TextInput, ScrollView} from 'react-native-gesture-handler';
 
 // Screen Dimensions
 const {height: SCREEN_HIGHT, width: SCREEEN_WIDTH} = Dimensions.get('window');
@@ -151,7 +152,8 @@ class Weather extends React.Component {
     if (this.props.message) {
       return <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>{this.props.message}</Text>;
     }
-    if (typeof weatherData.main === 'undefined') {
+    if (typeof weatherData.main === 'undefined' && !this.props.message) {
+      console.log('weather data', weatherData);
       return <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Please Wait</Text>;
     }
     return (
@@ -290,15 +292,16 @@ class Weather extends React.Component {
             color="#000"
             backgroundColor="#ffffff"
             onPress={() => {
-              console.log(this.state.searchCity);
+              Keyboard.dismiss();
               this.getCityWeather();
 
             }}
           />
         </View>
-        {/* {weatherForcastData.length > 0 && this.renderWeeklyWeather()} */}
-        {weatherData && this.renderWeeklyWeather()}
-        {weatherData && this.renderTodayWeather()}
+        <ScrollView>
+          {weatherData && this.renderWeeklyWeather()}
+          {weatherData && this.renderTodayWeather()}
+        </ScrollView>
       </SafeAreaView>
     );
   }

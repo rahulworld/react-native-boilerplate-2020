@@ -23,13 +23,13 @@ export const getGithubUserRepositories = () => {
 export const getWeatherData = (city) => async(dispatch) => {
   Api({
     method: 'get',
-    url: `http://api.openweathermap.org/data/2.5/weather?q=${city ? city : "London,uk"}&APPID=32fda7233ca32f2c99d4f7263a5a23b0`,
-  }).catch((error) => {
-    dispatch({type: 'MESSAGE_DISPLAY', payload: error.data.message });
+    url: `https://api.openweathermap.org/data/2.5/weather?q=${city ? city : "London,uk"}&APPID=32fda7233ca32f2c99d4f7263a5a23b0`,
   }).then((response) => {
-    if(response && response.cod === 200) {
+    if(response && response.cod == "200") {
       dispatch({type: 'GET_WEATHER_DATA', payload: response });
     }
+  }).catch((error) => {
+    dispatch({type: 'MESSAGE_DISPLAY', payload: error.data.message });
   })
 };
 
@@ -41,7 +41,7 @@ export const getWeatherForcast = (city) => async(dispatch) => {
     // url: `http://api.openweathermap.org/data/2.5/forecast?q=${city ? city : "London,uk"}&APPID=32fda7233ca32f2c99d4f7263a5a23b0`,
   }).then((response) => {
     console.log(response);
-    if(response.cod === "200") {
+    if(response.cod == "200") {
       dispatch({type: 'GET_WEATHER_FORCAST', payload: response.list.slice(0, 7)});
     }
   })

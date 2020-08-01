@@ -6,7 +6,12 @@ import { app }  from '../constants/AppConstants'
  */
 const client = axios.create({
 //   baseURL: app.api.url
-  baseURL: ''
+  baseURL: '',
+  withCredentials: false,
+  headers: {
+    'Access-Control-Allow-Origin' : '*',
+    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    },
 });
 
 /**
